@@ -25,5 +25,5 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-parser" % circeVersion,
 
   "de.heikoseeberger" %% "akka-http-circe" % akkaHttpCirceVersion,
-  "org.scalactic" %% "scalactic" % scalaTestVersion % Test
+  "org.scalatest" %% "scalatest" % scalaTestVersion % Test
 )
