@@ -4,21 +4,26 @@ version := "0.1"
 
 scalaVersion := "2.12.8"
 
-libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-actor" % "2.5.18",
-  "com.typesafe.akka" %% "akka-testkit" % "2.5.18" % Test,
-  "com.typesafe.akka" %% "akka-stream" % "2.5.18",
-  "com.typesafe.akka" %% "akka-stream-testkit" % "2.5.18" % Test,
-  "com.typesafe.akka" %% "akka-http" % "10.1.5",
-  "com.typesafe.akka" %% "akka-http-testkit" % "10.1.5" % Test,
-  "de.heikoseeberger" %% "akka-http-circe" % "1.22.0",
-  "org.scalactic" %% "scalactic" % "3.0.5" % Test
-)
-
+val akkaVersion = "2.5.18"
+val akkaHttpVersion = "10.1.5"
 val circeVersion = "0.10.0"
+val akkaHttpCirceVersion = "1.22.0"
+val scalaTestVersion = "3.0.5"
 
 libraryDependencies ++= Seq(
-  "io.circe" %% "circe-core",
-  "io.circe" %% "circe-generic",
-  "io.circe" %% "circe-parser"
-).map(_ % circeVersion)
+  "com.typesafe.akka" %% "akka-actor" % akkaVersion,
+  "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
+
+  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
+  "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % Test,
+
+  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % Test,
+
+  "io.circe" %% "circe-core" % circeVersion,
+  "io.circe" %% "circe-generic" % circeVersion,
+  "io.circe" %% "circe-parser" % circeVersion,
+
+  "de.heikoseeberger" %% "akka-http-circe" % akkaHttpCirceVersion,
+  "org.scalactic" %% "scalactic" % scalaTestVersion % Test
+)
