@@ -14,14 +14,14 @@ object Main extends App {
   implicit val materializer: ActorMaterializer = ActorMaterializer()
   import system.dispatcher
 
-  import akka.http.scaladsl.server.Directives._
-  def route = path("hello") {
-    get {
-      complete("Hello, World!")
-    }
-  }
+  val todoRepository = new InMemoryTodoRepository(Seq(
+    Todo(1, "Buy Eggs", "Ran out of eggs, buy a dozen when heading out", false),
+    Todo(2, "Buy Milk", "The cat drank all the milk, need to buy a litre", true)
+  ))
+  val router = new TodoRouter(todoRepository)
+  val server = new Server(router, host, port)
 
-  val bindingFuture = Http().bindAndHandle(route, host, port)
+  val bindingFuture = server.bind()
 
   bindingFuture.onComplete {
     case Success(binding) => println(s"Server listening on ${binding.localAddress}")
