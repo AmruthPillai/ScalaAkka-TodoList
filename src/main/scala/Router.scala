@@ -12,8 +12,18 @@ class TodoRouter(todoRepository: TodoRepository) extends Router with Directives 
   import io.circe.generic.auto._
 
   override def route: Route = pathPrefix("todos") {
-    get {
-      complete(todoRepository.all())
+    pathEndOrSingleSlash {
+      get {
+        complete(todoRepository.all())
+      }
+    } ~ path("done") {
+      get {
+        complete(todoRepository.done())
+      }
+    } ~ path("pending") {
+      get {
+        complete(todoRepository.pending())
+      }
     }
   }
 
